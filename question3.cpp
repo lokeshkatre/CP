@@ -1,28 +1,34 @@
 #include<iostream>
 using namespace std;
+int peakIndex(int arr[],int n)
+{
+    int s=0,ans;
+    int e=n-1;
+    int mid= s + (e-s)/2;
+    while(s<e)
+    {
+            if(arr[mid] < arr[mid+1])
+            {
+                s=mid+1;
+            }
+            else if(arr[mid]<arr[mid-1])
+            {
+                e=mid-1;
+            }
+            else
+            e=mid;
+            
+            mid= s + (e-s)/2;
+    }
+    return s;
+}
 int main()
 {
     int n,index;
-    cin>>n;
-    if(n<3)
-    {
-        cout<<"array length less than 3"<<endl;
-        return 0;
-    }
-    int arr[n],max=0;
-    for(int i=0;i<n;i++)
-    cin>>arr[i];
-    for(int i=0;i<n;i++)
-    {
-        if(max<arr[i])
-        max=arr[i];
-    }
-    cout<<"\n";
-    for(int i=0;i<n;i++)
-    {
-        if(arr[i]==max)
-        index=i;
-    }
+    
+    int arr[]={0,1,0};
+    n=sizeof(arr)/sizeof(arr[0]);
+    index=peakIndex(arr,n);
     cout<<index<<endl;
 
 }
